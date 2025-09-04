@@ -10,9 +10,9 @@ body{font-family:'Roboto',sans-serif;background:#f9f9f9;margin:0;padding:0;}
 .container{max-width:700px;margin:80px auto;padding:40px;background:#fff;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
 h1{text-align:center;margin-bottom:40px;color:#2e2e2e;}
 input, textarea, select{width:100%;padding:15px;margin-bottom:20px;border-radius:5px;border:1px solid #ccc;font-size:1rem;}
-input[readonly]{background:#eee;cursor:not-allowed;}
 button{background:#4caf50;color:#fff;padding:15px 30px;border:none;font-size:1.2rem;cursor:pointer;transition:all 0.3s;}
 button:hover{background:#45a049;transform:scale(1.05);}
+.helper-label{font-weight:bold;margin:10px 0 5px;display:block;color:#2e2e2e;}
 </style>
 </head>
 <body>
@@ -26,16 +26,19 @@ button:hover{background:#45a049;transform:scale(1.05);}
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="phone" placeholder="Phone Number" required>
 
-    <!-- Service dropdown -->
-    <select name="service" id="service" required>
+    <!-- Service -->
+    <label class="helper-label">Service</label>
+    <input type="text" name="service" id="service" placeholder="Type your service or pick below">
+    <select id="serviceDropdown">
       <option value="">-- Select a Service --</option>
       <option value="Basic Pickup">Basic Pickup</option>
       <option value="Medium Jobs">Medium Jobs</option>
       <option value="Large Jobs">Large Jobs</option>
     </select>
 
-    <!-- Price auto-fill -->
-    <input type="text" name="price" id="price" placeholder="Price" readonly>
+    <!-- Price -->
+    <label class="helper-label">Price</label>
+    <input type="text" name="price" id="price" placeholder="Enter or auto-fill price">
 
     <textarea name="message" rows="5" placeholder="Additional Details (optional)"></textarea>
     <button type="submit">Submit</button>
@@ -50,21 +53,25 @@ const priceMap = {
   "Large Jobs": "$750+"
 };
 
-const serviceSelect = document.getElementById("service");
+const serviceInput = document.getElementById("service");
+const serviceDropdown = document.getElementById("serviceDropdown");
 const priceField = document.getElementById("price");
 
-// Update price when service changes
-serviceSelect.addEventListener("change", () => {
-  const selected = serviceSelect.value;
-  priceField.value = priceMap[selected] || "";
+// When dropdown changes, fill service + price
+serviceDropdown.addEventListener("change", () => {
+  const selected = serviceDropdown.value;
+  if(selected){
+    serviceInput.value = selected;
+    priceField.value = priceMap[selected] || "";
+  }
 });
 
-// Auto-fill if URL params exist (from index.html service cards)
+// Auto-fill from URL params (index.html cards)
 const params = new URLSearchParams(window.location.search);
 const serviceFromURL = params.get("service");
 if(serviceFromURL){
-  serviceSelect.value = serviceFromURL.replace(/\+/g," ");
-  priceField.value = priceMap[serviceSelect.value] || "";
+  serviceInput.value = serviceFromURL.replace(/\+/g," ");
+  priceField.value = priceMap[serviceInput.value] || "";
 }
 </script>
 
