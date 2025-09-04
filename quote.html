@@ -23,6 +23,7 @@ form{background:var(--white);padding:2rem;border-radius:12px;box-shadow:0 5px 20
 input,textarea{width:100%;padding:0.9rem;border:1px solid #ccc;border-radius:8px;font-size:1rem;}
 button{background:var(--accent);color:white;padding:1rem 1.5rem;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:0.3s;}
 button:hover{background:var(--accent-dark);}
+.success-message{display:none; text-align:center; padding:2rem; background:#d4edda; color:#155724; border-radius:12px; margin-top:1rem; font-weight:600;}
 footer{text-align:center;padding:2rem;color:var(--secondary);}
 </style>
 </head>
@@ -32,10 +33,10 @@ footer{text-align:center;padding:2rem;color:var(--secondary);}
   <h1>Request a Free Quote</h1>
   <p>Fill out the form below and we will contact you with a free quote.</p>
 
-  <form action="https://formspree.io/f/yourformid" method="POST">
+  <form id="quoteForm" action="https://formspree.io/f/xqadgpbb" method="POST">
     <label for="service">Service Type</label>
-    <input type="text" name="service" id="service" placeholder="Basic Pickup, Medium Job, Large Job">
-    
+    <input type="text" name="service" id="service" placeholder="Service Type" required>
+
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
     <input type="email" name="email" placeholder="Email Address" required>
@@ -43,14 +44,50 @@ footer{text-align:center;padding:2rem;color:var(--secondary);}
     <button type="submit">Send Free Quote</button>
   </form>
 
+  <div class="success-message" id="successMessage">
+    Thank you! Your request has been sent. We will contact you shortly.
+  </div>
+
   <p style="text-align:center; margin-top:1rem; color:var(--secondary); font-size:0.9rem;">
-    Or contact us directly: <strong>(903) 875-6412</strong> · <a href="mailto:Boe@easyhanson.net">Boe@easyhanson.net</a>
+    Or contact us directly: <strong>(972) 740-7232</strong> · <strong>(903) 875-6412</strong> · 
+    <a href="mailto:boe@easyhanson.net">boe@easyhanson.net</a>, 
+    <a href="mailto:Brsnt3@gmail.com">Brsnt3@gmail.com</a>
   </p>
 </div>
 
 <footer>
   &copy; 2025 Borderlands Junk Removal
 </footer>
+
+<script>
+// Auto-fill the service input from URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const serviceField = document.getElementById('service');
+if(serviceField && urlParams.has('service')){
+  serviceField.value = urlParams.get('service');
+}
+
+// Handle Formspree submission with success message
+const form = document.getElementById('quoteForm');
+const successMsg = document.getElementById('successMessage');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if(response.ok){
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+  } else {
+    alert('Oops! There was a problem submitting your form.');
+  }
+});
+</script>
 
 </body>
 </html>
