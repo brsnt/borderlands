@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Quote - Borderlands Junk Removal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1e2a38;
+  --secondary:#5f6c7b;
+  --accent:#2ecc71;
+  --accent-dark:#27ae60;
+  --bg:#f5f7fa;
+  --white:#ffffff;
+}
+body{font-family:'Poppins',sans-serif;color:var(--primary);background:var(--bg);line-height:1.6;margin:0;padding:0;}
+.container{max-width:700px;margin:3rem auto;padding:0 2rem;}
+h1,h2{text-align:center;}
+h1{font-size:2.5rem;color:var(--accent-dark);}
+p{text-align:center;color:var(--secondary);margin-bottom:2rem;}
+form{background:var(--white);padding:2rem;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.2);display:grid;gap:1rem;}
+input,textarea{width:100%;padding:0.9rem;border:1px solid #ccc;border-radius:8px;font-size:1rem;}
+button{background:var(--accent);color:white;padding:1rem 1.5rem;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:0.3s;}
+button:hover{background:var(--accent-dark);}
+footer{text-align:center;padding:2rem;color:var(--secondary);}
+</style>
+</head>
+<body>
 
+<div class="container">
+  <h1>Request a Free Quote</h1>
+  <p>Fill out the form below and we will contact you with a free quote.</p>
+
+  <form action="https://formspree.io/f/yourformid" method="POST">
+    <label for="service">Service Type</label>
+    <input type="text" name="service" id="service" placeholder="Basic Pickup, Medium Job, Large Job">
+    
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <textarea name="details" rows="5" placeholder="Tell us about the junk you need removed"></textarea>
+    <button type="submit">Send Free Quote</button>
+  </form>
+
+  <p style="text-align:center; margin-top:1rem; color:var(--secondary); font-size:0.9rem;">
+    Or contact us directly: <strong>(903) 875-6412</strong> · <a href="mailto:Boe@easyhanson.net">Boe@easyhanson.net</a>
+  </p>
+</div>
+
+<footer>
+  &copy; 2025 Borderlands Junk Removal
+</footer>
+
+</body>
+</html>
