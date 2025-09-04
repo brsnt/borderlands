@@ -1,298 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Borderlands Junk Removal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Borderlands Junk Removal</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+html { scroll-behavior:smooth; }
 
-    /* Colors */
-    :root {
-      --primary-color: #2e2e2e;
-      --accent-color: #4caf50;
-      --text-color: #fff;
-      --bg-color: #f9f9f9;
-    }
+:root {
+  --primary-color:#2e2e2e;
+  --accent-color:#4caf50;
+  --text-color:#fff;
+  --bg-color:#f9f9f9;
+}
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      width: 100%;
-      background: rgba(0,0,0,0.8);
-      color: var(--text-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      z-index: 1000;
-    }
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      margin-left: 25px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: var(--accent-color); }
+nav {
+  position:fixed; width:100%; background:rgba(0,0,0,0.85); color:var(--text-color);
+  display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000;
+}
+nav a { color:var(--text-color); text-decoration:none; margin-left:25px; font-weight:500; transition:color 0.3s; }
+nav a:hover { color:var(--accent-color); }
 
-    /* Header / Hero */
-    header {
-      height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?junk-truck,removal') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--text-color);
-      text-align: center;
-      position: relative;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.5);
-    }
-    header h1 {
-      font-size: 4rem;
-      z-index: 1;
-      margin-bottom: 20px;
-    }
-    header p {
-      font-size: 1.5rem;
-      z-index: 1;
-      margin-bottom: 30px;
-    }
-    .btn-quote {
-      background: var(--accent-color);
-      color: #fff;
-      padding: 15px 30px;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 1;
-      transition: background 0.3s;
-    }
-    .btn-quote:hover { background: #45a049; }
+header {
+  height:100vh; background:url('https://source.unsplash.com/1600x900/?junk-truck') center/cover no-repeat;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative;
+}
+header::after {
+  content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);
+}
+header h1 { font-size:4rem; z-index:1; margin-bottom:20px; }
+header p { font-size:1.5rem; z-index:1; margin-bottom:30px; }
+.btn-quote { background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; z-index:1; transition:background 0.3s; }
+.btn-quote:hover { background:#45a049; }
 
-    /* Sections */
-    section {
-      padding: 80px 50px;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 50px;
-      color: var(--primary-color);
-    }
+section { padding:80px 50px; }
+.section-title { text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--primary-color); }
 
-    /* About Us */
-    #about {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-    }
-    #about img {
-      width: 500px;
-      max-width: 100%;
-      border-radius: 10px;
-    }
-    #about div {
-      max-width: 600px;
-    }
-    #about p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #333;
-    }
+#about { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px; }
+#about img { width:500px; max-width:100%; border-radius:10px; }
+#about div { max-width:600px; }
+#about p { font-size:1.1rem; line-height:1.7; color:#333; }
 
-    /* Services */
-    #services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .service-card {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .service-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .service-card h3 {
-      padding: 20px;
-      font-size: 1.5rem;
-      color: var(--primary-color);
-    }
+#services { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px; }
+.service-card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; }
+.service-card:hover { transform:translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
+.service-card img { width:100%; height:200px; object-fit:cover; }
+.service-card h3 { padding:20px; font-size:1.5rem; color:var(--primary-color); }
 
-    /* Free Quote Form */
-    #quote {
-      background: var(--primary-color);
-      color: #fff;
-      border-radius: 10px;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 40px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    }
-    #quote input, #quote textarea {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: none;
-      font-size: 1rem;
-    }
-    #quote button {
-      background: var(--accent-color);
-      color: #fff;
-      padding: 15px 30px;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    #quote button:hover { background: #45a049; }
+#quote { background:var(--primary-color); color:#fff; border-radius:10px; max-width:700px; margin:0 auto; padding:40px; box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+#quote input, #quote textarea { width:100%; padding:15px; margin-bottom:20px; border-radius:5px; border:none; font-size:1rem; }
+#quote button { background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; transition:background 0.3s; }
+#quote button:hover { background:#45a049; }
 
-    /* Testimonials */
-    #testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .testimonial-card {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    .testimonial-card p {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 15px;
-    }
-    .testimonial-card h4 {
-      color: var(--primary-color);
-    }
+footer { background:#222; color:#fff; text-align:center; padding:30px 50px; }
 
-    /* Footer */
-    footer {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 30px 50px;
-    }
-
-    /* Responsive */
-    @media(max-width: 768px){
-      header h1 { font-size: 3rem; }
-      header p { font-size: 1.2rem; }
-      nav { flex-direction: column; gap: 10px; }
-      #about { flex-direction: column; }
-    }
-  </style>
+@media(max-width:768px){
+  header h1 { font-size:3rem; }
+  header p { font-size:1.2rem; }
+  nav { flex-direction:column; gap:10px; }
+  #about { flex-direction:column; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div>Borderlands Junk Removal</div>
-    <div>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#quote">Free Quote</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav>
+  <div>Borderlands Junk Removal</div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="quote.html">Get a Quote</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-  <!-- Header / Hero -->
-  <header>
-    <h1>Borderlands Junk Removal</h1>
-    <p>Fast, Affordable, Reliable Junk Removal</p>
-    <button class="btn-quote" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Get a Free Quote</button>
-  </header>
+<header>
+  <h1>Borderlands Junk Removal</h1>
+  <p>Fast, Affordable, Reliable Junk Removal Services</p>
+  <button class="btn-quote" onclick="window.location.href='quote.html'">Get a Free Quote</button>
+</header>
 
-  <!-- About Us -->
-  <section id="about">
-    <div>
-      <h2 class="section-title">About Us</h2>
-      <p>Borderlands Junk Removal, led by Brant Borden and Boe Hanson, provides fast, affordable, and reliable junk removal services. We handle everything from household junk to commercial cleanouts with care and professionalism.</p>
-    </div>
-    <img src="https://source.unsplash.com/500x400/?team,work" alt="About Us">
-  </section>
+<section id="about">
+  <div>
+    <h2 class="section-title">About Us</h2>
+    <p>Borderlands Junk Removal is owned and operated by Brant Borden, our Founder and Owner, and Boe Hanson, our Chief Operating Officer. We are both hardworking and dedicated professionals committed to providing fast, affordable, and reliable junk removal. Our goal is to help clients clear out their spaces quickly and efficiently, whether it’s a residential cleanout or commercial project. With Borderlands Junk Removal, you can expect friendly service, careful handling, and a team that truly cares about helping you declutter your life.</p>
+  </div>
+  <img src="https://source.unsplash.com/500x400/?team,work" alt="About Us">
+</section>
 
-  <!-- Services -->
-  <section id="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="service-card" onclick="window.location.href='quote.html?service=Junk Removal'">
-      <img src="https://source.unsplash.com/400x300/?junk,removal" alt="Junk Removal">
-      <h3>Junk Removal</h3>
-    </div>
-    <div class="service-card" onclick="window.location.href='quote.html?service=Dumpster Rental'">
-      <img src="https://source.unsplash.com/400x300/?dumpster" alt="Dumpster Rental">
-      <h3>Dumpster Rental</h3>
-    </div>
-    <div class="service-card" onclick="window.location.href='quote.html?service=Estate Cleanouts'">
-      <img src="https://source.unsplash.com/400x300/?estate,cleanout" alt="Estate Cleanouts">
-      <h3>Estate Cleanouts</h3>
-    </div>
-    <div class="service-card" onclick="window.location.href='quote.html?service=Commercial Cleanouts'">
-      <img src="https://source.unsplash.com/400x300/?commercial,cleanup" alt="Commercial Cleanouts">
-      <h3>Commercial Cleanouts</h3>
-    </div>
-  </section>
+<section id="services">
+  <h2 class="section-title">Our Services</h2>
+  <div class="service-card" onclick="window.location.href='quote.html?service=Junk+Removal'">
+    <img src="https://source.unsplash.com/400x300/?junk,removal" alt="Junk Removal">
+    <h3>Junk Removal</h3>
+  </div>
+</section>
 
-  <!-- Free Quote Form -->
-  <section id="quote">
-    <h2 class="section-title" style="color:#fff;">Get a Free Quote</h2>
-    <form action="YOUR_FORMSPREE_ENDPOINT" method="POST">
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="phone" placeholder="Phone Number" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
+<section id="quote">
+  <h2 class="section-title" style="color:#fff;">Get a Free Quote</h2>
+  <form action="https://formspree.io/f/xqadgpbb" method="POST">
+    <input type="hidden" name="_cc" value="boe@easyhanson.net,Brsnt3@gmail.com">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+    <input type="text" name="service" id="service" placeholder="Service" value="Junk Removal" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2 class="section-title">What Our Clients Say</h2>
-    <div class="testimonial-card">
-      <p>"Fast, reliable, and professional. Highly recommend Borderlands Junk Removal!"</p>
-      <h4>- Jane D.</h4>
-    </div>
-    <div class="testimonial-card">
-      <p>"They removed all the junk from my garage in no time. Excellent service!"</p>
-      <h4>- Mike S.</h4>
-    </div>
-    <div class="testimonial-card">
-      <p>"Affordable and friendly team. Made the cleanup so easy."</p>
-      <h4>- Lisa T.</h4>
-    </div>
-  </section>
-
-  <!-- Footer / Contact -->
-  <footer id="contact">
-    <p>Email: contact@borderlandsjunk.com | Phone: (555) 123-4567</p>
-    <p>&copy; 2025 Borderlands Junk Removal. All rights reserved.</p>
-  </footer>
+<footer id="contact">
+  <p>Brant Borden (Founder/Owner): 972-740-7232 | Boe Hanson (COO): 903-875-6412</p>
+  <p>&copy; 2025 Borderlands Junk Removal. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
