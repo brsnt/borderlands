@@ -6,61 +6,86 @@
 <title>Borderlands Junk Removal</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-html { scroll-behavior:smooth; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+html{scroll-behavior:smooth;}
 
-:root {
+:root{
   --primary-color:#2e2e2e;
   --accent-color:#4caf50;
   --text-color:#fff;
   --bg-color:#f9f9f9;
 }
 
-nav {
+body{background:var(--bg-color);}
+
+/* Navigation */
+nav{
   position:fixed; width:100%; background:rgba(0,0,0,0.85); color:var(--text-color);
   display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000;
+  transition:all 0.3s;
 }
-nav a { color:var(--text-color); text-decoration:none; margin-left:25px; font-weight:500; transition:color 0.3s; }
-nav a:hover { color:var(--accent-color); }
+nav:hover{background:rgba(0,0,0,0.95);}
+nav a{color:var(--text-color); text-decoration:none; margin-left:25px; font-weight:500; transition:color 0.3s;}
+nav a:hover{color:var(--accent-color);}
 
-header {
-  height:100vh; background:url('https://source.unsplash.com/1600x900/?junk-truck') center/cover no-repeat;
-  display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative;
+/* Hero */
+header{
+  height:100vh; background:url('https://source.unsplash.com/1600x900/?junk-truck,removal') center/cover no-repeat;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative; overflow:hidden;
 }
-header::after {
+header::after{
   content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);
 }
-header h1 { font-size:4rem; z-index:1; margin-bottom:20px; }
-header p { font-size:1.5rem; z-index:1; margin-bottom:30px; }
-.btn-quote { background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; z-index:1; transition:background 0.3s; }
-.btn-quote:hover { background:#45a049; }
+header h1{font-size:4rem; z-index:1; margin-bottom:20px; animation:fadeInDown 1.5s;}
+header p{font-size:1.5rem; z-index:1; margin-bottom:30px; animation:fadeInUp 1.5s;}
+.btn-quote{background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; z-index:1; transition:all 0.3s; animation:fadeIn 2s;}
+.btn-quote:hover{background:#45a049; transform:scale(1.05);}
 
-section { padding:80px 50px; }
-.section-title { text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--primary-color); }
+/* Sections */
+section{padding:100px 50px; opacity:0; transform:translateY(50px); transition:all 0.8s ease-in-out;}
+.section-title{text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--primary-color);}
 
-#about { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px; }
-#about img { width:500px; max-width:100%; border-radius:10px; }
-#about div { max-width:600px; }
-#about p { font-size:1.1rem; line-height:1.7; color:#333; }
+/* About */
+#about{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px;}
+#about img{width:500px; max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+#about div{max-width:600px;}
+#about p{font-size:1.1rem; line-height:1.7; color:#333;}
 
-#services { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px; }
-.service-card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; }
-.service-card:hover { transform:translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-.service-card img { width:100%; height:200px; object-fit:cover; }
-.service-card h3 { padding:20px; font-size:1.5rem; color:var(--primary-color); }
+/* Services */
+#services{display:flex; justify-content:center;}
+.service-card{background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.5s, box-shadow 0.5s; cursor:pointer; max-width:400px; margin:auto;}
+.service-card:hover{transform:translateY(-15px); box-shadow:0 15px 40px rgba(0,0,0,0.3);}
+.service-card img{width:100%; height:250px; object-fit:cover;}
+.service-card h3{padding:20px; font-size:1.8rem; text-align:center; color:var(--primary-color);}
 
-#quote { background:var(--primary-color); color:#fff; border-radius:10px; max-width:700px; margin:0 auto; padding:40px; box-shadow:0 5px 20px rgba(0,0,0,0.2); }
-#quote input, #quote textarea { width:100%; padding:15px; margin-bottom:20px; border-radius:5px; border:none; font-size:1rem; }
-#quote button { background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; transition:background 0.3s; }
-#quote button:hover { background:#45a049; }
+/* Quote Form */
+#quote{background:var(--primary-color); color:#fff; border-radius:10px; max-width:700px; margin:0 auto; padding:40px; box-shadow:0 5px 30px rgba(0,0,0,0.3);}
+#quote input, #quote textarea{width:100%; padding:15px; margin-bottom:20px; border-radius:5px; border:none; font-size:1rem;}
+#quote button{background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; transition:all 0.3s;}
+#quote button:hover{background:#45a049; transform:scale(1.05);}
 
-footer { background:#222; color:#fff; text-align:center; padding:30px 50px; }
+/* Testimonials */
+#testimonials{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px;}
+.testimonial-card{background:#fff; padding:30px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:all 0.5s;}
+.testimonial-card p{font-style:italic; color:#555; margin-bottom:15px;}
+.testimonial-card h4{color:var(--primary-color); text-align:right;}
+
+/* Footer */
+footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-size:1rem;}
+
+/* Animations */
+@keyframes fadeInDown{from{opacity:0; transform:translateY(-50px);} to{opacity:1; transform:translateY(0);}}
+@keyframes fadeInUp{from{opacity:0; transform:translateY(50px);} to{opacity:1; transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+
+/* Scroll reveal */
+.visible{opacity:1; transform:translateY(0); transition:all 0.8s ease-in-out;}
 
 @media(max-width:768px){
-  header h1 { font-size:3rem; }
-  header p { font-size:1.2rem; }
-  nav { flex-direction:column; gap:10px; }
-  #about { flex-direction:column; }
+  header h1{font-size:3rem;}
+  header p{font-size:1.2rem;}
+  nav{flex-direction:column; gap:10px;}
+  #about{flex-direction:column;}
 }
 </style>
 </head>
@@ -71,7 +96,8 @@ footer { background:#222; color:#fff; text-align:center; padding:30px 50px; }
   <div>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="quote.html">Get a Quote</a>
+    <a href="#quote">Get a Quote</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -79,13 +105,13 @@ footer { background:#222; color:#fff; text-align:center; padding:30px 50px; }
 <header>
   <h1>Borderlands Junk Removal</h1>
   <p>Fast, Affordable, Reliable Junk Removal Services</p>
-  <button class="btn-quote" onclick="window.location.href='quote.html'">Get a Free Quote</button>
+  <button class="btn-quote" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Get a Free Quote</button>
 </header>
 
 <section id="about">
   <div>
     <h2 class="section-title">About Us</h2>
-    <p>Borderlands Junk Removal is owned and operated by Brant Borden, our Founder and Owner, and Boe Hanson, our Chief Operating Officer. We are both hardworking and dedicated professionals committed to providing fast, affordable, and reliable junk removal. Our goal is to help clients clear out their spaces quickly and efficiently, whether it’s a residential cleanout or commercial project. With Borderlands Junk Removal, you can expect friendly service, careful handling, and a team that truly cares about helping you declutter your life.</p>
+    <p>Borderlands Junk Removal is owned and operated by <strong>Brant Borden</strong>, our Founder and Owner, and <strong>Boe Hanson</strong>, our Chief Operating Officer. We are both hardworking, reliable, and dedicated to helping our clients clear out their spaces efficiently. Our team is committed to providing friendly, professional service, whether it’s a residential cleanout, commercial project, or emergency junk removal. With Borderlands Junk Removal, you get a team that truly cares, shows up on time, and makes your junk removal process easy and stress-free.</p>
   </div>
   <img src="https://source.unsplash.com/500x400/?team,work" alt="About Us">
 </section>
@@ -111,10 +137,42 @@ footer { background:#222; color:#fff; text-align:center; padding:30px 50px; }
   </form>
 </section>
 
+<section id="testimonials">
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="testimonial-card">
+    <p>"Brant and Boe were amazing! They removed all the junk from my garage quickly and efficiently."</p>
+    <h4>- Jane D.</h4>
+  </div>
+  <div class="testimonial-card">
+    <p>"Professional, friendly, and hardworking. Borderlands Junk Removal made the cleanup easy!"</p>
+    <h4>- Mike S.</h4>
+  </div>
+  <div class="testimonial-card">
+    <p>"I highly recommend them. They showed up on time and handled everything with care."</p>
+    <h4>- Lisa T.</h4>
+  </div>
+</section>
+
 <footer id="contact">
   <p>Brant Borden (Founder/Owner): 972-740-7232 | Boe Hanson (COO): 903-875-6412</p>
   <p>&copy; 2025 Borderlands Junk Removal. All rights reserved.</p>
 </footer>
+
+<script>
+// Scroll reveal for sections
+const sections = document.querySelectorAll('section');
+const revealOnScroll = () => {
+  const scrollY = window.pageYOffset;
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if(scrollY + window.innerHeight > sectionTop + 100){
+      section.classList.add('visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
+</script>
 
 </body>
 </html>
