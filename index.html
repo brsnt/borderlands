@@ -4,201 +4,242 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Borderlands Junk Removal</title>
-  <meta name="description" content="Borderlands Junk Removal offers fast, reliable junk hauling for homes, offices, and construction sites. Affordable pricing and professional service.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Borderlands Junk Removal offers affordable and reliable junk hauling. Locally owned by Brant Borden and Boe Hanson. Free quotes available.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f9f5ef;
-      --accent: #8d7b56;
-      --primary: #2b2b2b;
-      --secondary: #6f6f6f;
-      --cta: #c59d6f;
-      --cta-hover: #b0895c;
+      --bg: #f5f7fa;
+      --primary: #1e2a38;
+      --secondary: #5f6c7b;
+      --accent: #2ecc71; /* Green for CTA */
+      --accent-dark: #27ae60;
+      --card-bg: #fff;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--primary);
       line-height: 1.6;
     }
     header {
-      padding: 3rem 1rem;
-      text-align: center;
-      background: linear-gradient(135deg, var(--accent), #5e5238);
+      background: url('https://images.unsplash.com/photo-1606621463149-b0d5f2fbf96f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 5rem 1rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(30,42,56,0.7);
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 2;
     }
     header h1 {
       font-size: 3rem;
       font-weight: 700;
     }
-    .tagline {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
+    header p { font-size: 1.2rem; margin-top: 0.5rem; }
+    
     .content {
       max-width: 1100px;
       margin: 3rem auto;
       padding: 0 2rem;
+    }
+    .about {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+    }
+    .about p {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+    
+    .pricing-section {
       text-align: center;
     }
-    .content p {
-      font-size: 1.1rem;
-      color: var(--secondary);
-      margin-bottom: 2rem;
-    }
-    .pricing-section {
-      background: #fff;
-      padding: 3rem;
-      border-radius: 14px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      margin-top: 2rem;
-    }
     .pricing-section h2 {
-      color: var(--accent);
       font-size: 2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent-dark);
     }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
       gap: 1.5rem;
     }
     .pricing-card {
-      background: #f7f7f7;
+      background: var(--card-bg);
       padding: 2rem;
-      border-radius: 10px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
-    .pricing-card:hover { transform: translateY(-5px); }
-    .pricing-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-    }
+    .pricing-card:hover { transform: translateY(-8px); }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .pricing-card p { color: var(--secondary); font-size: 1rem; }
-    .price {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--cta);
-      margin-top: 1rem;
+    .price { font-size: 1.3rem; font-weight: 600; margin-top: 1rem; color: var(--accent-dark); }
+    
+    /* Quote Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .form-section {
-      margin-top: 3rem;
-      padding: 3rem;
+    .modal-content {
       background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
       text-align: left;
+      position: relative;
     }
-    .form-section h2 {
-      font-size: 1.8rem;
+    .modal-content h2 {
       margin-bottom: 1rem;
-      color: var(--accent);
+      color: var(--accent-dark);
     }
-    form {
-      display: grid;
-      gap: 1rem;
-    }
-    input, textarea {
+    .modal-content input, .modal-content textarea {
       width: 100%;
       padding: 0.9rem;
       border: 1px solid #ccc;
       border-radius: 8px;
+      margin-bottom: 1rem;
       font-size: 1rem;
     }
-    button {
-      background: var(--cta);
-      color: #fff;
-      padding: 0.9rem;
+    .modal-content button {
+      background: var(--accent);
       border: none;
+      padding: 0.9rem 1.3rem;
       border-radius: 8px;
+      color: white;
       font-weight: 600;
-      font-size: 1.1rem;
       cursor: pointer;
       transition: background 0.3s;
     }
-    button:hover { background: var(--cta-hover); }
+    .modal-content button:hover { background: var(--accent-dark); }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
-      font-size: 0.9rem;
       color: var(--secondary);
+      margin-top: 3rem;
     }
-    /* Sticky CTA for mobile */
-    .sticky-cta {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: var(--cta);
-      color: #fff;
+    .quote-link {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: white;
       padding: 0.9rem 1.3rem;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-      z-index: 1000;
+      border-radius: 8px;
       text-decoration: none;
+      font-weight: 600;
       transition: background 0.3s;
     }
-    .sticky-cta:hover { background: var(--cta-hover); }
-    @media (max-width: 500px) {
-      header h1 { font-size: 2rem; }
-      .pricing-section, .form-section { padding: 1.5rem; }
-    }
+    .quote-link:hover { background: var(--accent-dark); }
   </style>
 </head>
 <body>
   <header>
     <h1>Borderlands Junk Removal</h1>
-    <p class="tagline">Fast, Reliable Junk Removal That Gets the Job Done Right</p>
+    <p>Affordable, Reliable, Locally Owned</p>
   </header>
 
   <div class="content">
-    <p>We handle everything from single-item pickups to full estate clean-outs. Our professional crew makes junk disappear quickly, affordably, and stress-free.</p>
+    <!-- About Section -->
+    <div class="about">
+      <h2>About Us</h2>
+      <p>My name is <strong>Brant Borden</strong>, the owner and founder of Borderland Solutions. Along with my friend <strong>Boe Hanson</strong>, our COO, we started this junk removal service to provide affordable, reliable help for your hauling needs. Whether it’s a single item or a whole estate clean-out, we’re here to make your life easier.</p>
+    </div>
 
-    <!-- Pricing -->
+    <!-- Pricing Section -->
     <div class="pricing-section">
-      <h2>Our Pricing</h2>
+      <h2>Our Services</h2>
       <div class="pricing-grid">
-        <div class="pricing-card">
+        <div class="pricing-card" data-service="Basic Pickup - $50-$200">
           <h3>Basic Pickup</h3>
-          <p>Single item or small loads — perfect for furniture, appliances, or quick cleanups.</p>
+          <p>Quick removal for furniture, appliances, or small loads.</p>
           <div class="price">$50 - $200</div>
         </div>
-        <div class="pricing-card">
+        <div class="pricing-card" data-service="Medium Job - $200-$750">
           <h3>Medium Jobs</h3>
-          <p>Garage clean-outs or several rooms worth of items. Ideal for home & office jobs.</p>
+          <p>Garage clean-outs, office junk, or multiple rooms worth of items.</p>
           <div class="price">$200 - $750</div>
         </div>
-        <div class="pricing-card">
+        <div class="pricing-card" data-service="Large Job - $750+">
           <h3>Large Jobs</h3>
-          <p>Estate clean-outs or heavy construction debris. We handle the big stuff.</p>
+          <p>Estate clean-outs or heavy debris removal from construction sites.</p>
           <div class="price">$750+</div>
         </div>
       </div>
-    </div>
-
-    <!-- Form -->
-    <div class="form-section" id="quote">
-      <h2>Get a Free Quote</h2>
-      <p>Fill out the form below and we’ll get back to you quickly via phone or email.</p>
-      <form action="https://formspree.io/f/yourformid" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="Your Phone Number" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="details" rows="5" placeholder="Tell us about the junk you need removed..." required></textarea>
-        <button type="submit">Send Request</button>
-      </form>
-      <p style="margin-top:1rem; font-size:0.9rem; color:var(--secondary);">
-        Or contact us directly: <strong>(903) 875-6412</strong> · <a href="mailto:Boe@easyhanson.net">Boe@easyhanson.net</a>
-      </p>
+      <a href="quote.html" class="quote-link">Free Quote Page</a>
     </div>
   </div>
 
-  <a class="sticky-cta" href="#quote">📩 Get a Quote</a>
+  <!-- Modal for Quotes -->
+  <div class="modal" id="quoteModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2 id="modalTitle">Request a Quote</h2>
+      <form action="https://formspree.io/f/yourformid" method="POST">
+        <input type="hidden" name="service" id="serviceInput">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="details" rows="4" placeholder="Any extra details?"></textarea>
+        <button type="submit">Send Free Quote Request</button>
+      </form>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Borderlands Junk Removal · All Rights Reserved
   </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.pricing-card');
+    const modal = document.getElementById('quoteModal');
+    const closeModal = document.getElementById('closeModal');
+    const serviceInput = document.getElementById('serviceInput');
+    const modalTitle = document.getElementById('modalTitle');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const service = card.getAttribute('data-service');
+        serviceInput.value = service;
+        modalTitle.textContent = "Request a Quote for " + service;
+        modal.style.display = 'flex';
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
