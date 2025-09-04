@@ -3,112 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Quote - Borderlands Junk Removal</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Get a Free Quote - Borderlands Junk Removal</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --primary:#1e2a38;
-  --secondary:#5f6c7b;
-  --accent:#2ecc71;
-  --accent-dark:#27ae60;
-  --bg:#f5f7fa;
-  --white:#ffffff;
-}
-body{font-family:'Poppins',sans-serif;color:var(--primary);background:var(--bg);line-height:1.6;margin:0;padding:0;}
-.container{max-width:700px;margin:3rem auto;padding:0 2rem;}
-h1,h2{text-align:center;}
-h1{font-size:2.5rem;color:var(--accent-dark);}
-p{text-align:center;color:var(--secondary);margin-bottom:2rem;}
-form{background:var(--white);padding:2rem;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.2);display:grid;gap:1rem;}
-input,select,textarea{width:100%;padding:0.9rem;border:1px solid #ccc;border-radius:8px;font-size:1rem;}
-button{background:var(--accent);color:white;padding:1rem 1.5rem;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:0.3s;}
-button:hover{background:var(--accent-dark);}
-.success-message{display:none;text-align:center;padding:2rem;background:#d4edda;color:#155724;border-radius:12px;margin-top:1rem;font-weight:600;}
-footer{text-align:center;padding:2rem;color:var(--secondary);}
+body{font-family:'Roboto',sans-serif;background:#f9f9f9;margin:0;padding:0;}
+.container{max-width:700px;margin:80px auto;padding:40px;background:#fff;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+h1{text-align:center;margin-bottom:40px;color:#2e2e2e;}
+input, textarea, select{width:100%;padding:15px;margin-bottom:20px;border-radius:5px;border:1px solid #ccc;font-size:1rem;}
+input[readonly]{background:#eee;cursor:not-allowed;}
+button{background:#4caf50;color:#fff;padding:15px 30px;border:none;font-size:1.2rem;cursor:pointer;transition:all 0.3s;}
+button:hover{background:#45a049;transform:scale(1.05);}
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Request a Free Quote</h1>
-  <p>Fill out the form below and we will contact you with a free quote.</p>
+  <h1>Get a Free Quote</h1>
+  <form action="https://formspree.io/f/xqadgpbb" method="POST">
+    <input type="hidden" name="_cc" value="boe@easyhanson.net,Brsnt3@gmail.com">
 
-  <form id="quoteForm" action="https://formspree.io/f/xqadgpbb" method="POST">
-    <label for="service">Select a Service</label>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+
+    <!-- Service dropdown -->
     <select name="service" id="service" required>
-      <option value="">-- Choose a Service --</option>
+      <option value="">-- Select a Service --</option>
       <option value="Basic Pickup">Basic Pickup</option>
       <option value="Medium Jobs">Medium Jobs</option>
       <option value="Large Jobs">Large Jobs</option>
     </select>
 
-    <label for="price">Price Range</label>
-    <input type="text" name="price" id="price" readonly placeholder="Will auto-fill based on service">
+    <!-- Price auto-fill -->
+    <input type="text" name="price" id="price" placeholder="Price" readonly>
 
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-    <textarea name="details" rows="5" placeholder="Tell us about the junk you need removed"></textarea>
-    <button type="submit">Send Free Quote</button>
+    <textarea name="message" rows="5" placeholder="Additional Details (optional)"></textarea>
+    <button type="submit">Submit</button>
   </form>
-
-  <div class="success-message" id="successMessage">
-    ✅ Thank you! Your request has been sent. We will contact you shortly.
-  </div>
-
-  <p style="text-align:center; margin-top:1rem; color:var(--secondary); font-size:0.9rem;">
-    Or contact us directly: <strong>(903) 875-6412</strong> · <a href="mailto:Boe@easyhanson.net">Boe@easyhanson.net</a>
-  </p>
 </div>
 
-<footer>
-  &copy; 2025 Borderlands Junk Removal
-</footer>
-
 <script>
-// Auto-fill the service input from URL parameter
-const urlParams = new URLSearchParams(window.location.search);
-const serviceField = document.getElementById('service');
-if(serviceField && urlParams.has('service')){
-  serviceField.value = urlParams.get('service');
-  serviceField.dispatchEvent(new Event("change")); // trigger price update
-}
-
-// Auto-fill price based on dropdown selection
-const serviceSelect = document.getElementById("service");
-const priceField = document.getElementById("price");
-
+// Map services to prices
 const priceMap = {
   "Basic Pickup": "$50 - $200",
   "Medium Jobs": "$200 - $750",
   "Large Jobs": "$750+"
 };
 
+const serviceSelect = document.getElementById("service");
+const priceField = document.getElementById("price");
+
+// Update price when service changes
 serviceSelect.addEventListener("change", () => {
   const selected = serviceSelect.value;
   priceField.value = priceMap[selected] || "";
 });
 
-// Handle Formspree submission with success message
-const form = document.getElementById('quoteForm');
-const successMsg = document.getElementById('successMessage');
-
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const response = await fetch(form.action, {
-    method: form.method,
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  });
-
-  if(response.ok){
-    form.style.display = 'none';
-    successMsg.style.display = 'block';
-  } else {
-    alert('Oops! There was a problem submitting your form.');
-  }
-});
+// Auto-fill if URL params exist (from index.html service cards)
+const params = new URLSearchParams(window.location.search);
+const serviceFromURL = params.get("service");
+if(serviceFromURL){
+  serviceSelect.value = serviceFromURL.replace(/\+/g," ");
+  priceField.value = priceMap[serviceSelect.value] || "";
+}
 </script>
 
 </body>
