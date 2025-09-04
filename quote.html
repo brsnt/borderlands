@@ -34,8 +34,8 @@ footer{text-align:center;padding:2rem;color:var(--secondary);}
 
   <form action="https://formspree.io/f/yourformid" method="POST">
     <label for="service">Service Type</label>
-    <input type="text" name="service" id="service" placeholder="Service Type" required>
-
+    <input type="text" name="service" id="service" placeholder="Basic Pickup, Medium Job, Large Job">
+    
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
     <input type="email" name="email" placeholder="Email Address" required>
@@ -51,15 +51,6 @@ footer{text-align:center;padding:2rem;color:var(--secondary);}
 <footer>
   &copy; 2025 Borderlands Junk Removal
 </footer>
-
-<script>
-// Auto-fill the service input from URL parameter
-const urlParams = new URLSearchParams(window.location.search);
-const serviceField = document.getElementById('service');
-if(serviceField && urlParams.has('service')){
-  serviceField.value = urlParams.get('service');
-}
-</script>
 
 </body>
 </html>
