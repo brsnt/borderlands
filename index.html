@@ -8,86 +8,40 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
 html{scroll-behavior:smooth;}
-
-:root{
-  --primary-color:#2e2e2e;
-  --accent-color:#4caf50;
-  --text-color:#fff;
-  --bg-color:#f9f9f9;
-}
-
+:root{--primary-color:#2e2e2e;--accent-color:#4caf50;--text-color:#fff;--bg-color:#f9f9f9;}
 body{background:var(--bg-color);}
-
-/* Navigation */
-nav{
-  position:fixed; width:100%; background:rgba(0,0,0,0.85); color:var(--text-color);
-  display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000;
-  transition:all 0.3s;
-}
+nav{position:fixed;width:100%;background:rgba(0,0,0,0.85);color:var(--text-color);display:flex;justify-content:space-between;align-items:center;padding:15px 50px;z-index:1000;transition:all 0.3s;}
 nav:hover{background:rgba(0,0,0,0.95);}
 nav a{color:var(--text-color); text-decoration:none; margin-left:25px; font-weight:500; transition:color 0.3s;}
 nav a:hover{color:var(--accent-color);}
-
-/* Hero */
-header{
-  height:100vh; background:url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative; overflow:hidden;
-}
-header::after{
-  content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);
-}
+header{height:100vh; background:url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative; overflow:hidden;}
+header::after{content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);}
 header h1{font-size:4rem; z-index:1; margin-bottom:20px; animation:fadeInDown 1.5s;}
 header p{font-size:1.5rem; z-index:1; margin-bottom:30px; animation:fadeInUp 1.5s;}
 .btn-quote{background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; z-index:1; transition:all 0.3s; animation:fadeIn 2s;}
 .btn-quote:hover{background:#45a049; transform:scale(1.05);}
-
-/* Sections */
 section{padding:100px 50px; opacity:0; transform:translateY(50px); transition:all 0.8s ease-in-out;}
 .section-title{text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--primary-color);}
-
-/* About */
 #about{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px;}
 #about img{width:500px; max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.1);}
 #about div{max-width:600px;}
 #about p{font-size:1.1rem; line-height:1.7; color:#333;}
-
-/* Services */
 #services{display:flex; flex-wrap:wrap; justify-content:center; gap:30px;}
 .service-card{background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.5s, box-shadow 0.5s; cursor:pointer; max-width:400px;}
 .service-card:hover{transform:translateY(-15px); box-shadow:0 15px 40px rgba(0,0,0,0.3);}
 .service-card img{width:100%; height:250px; object-fit:cover;}
 .service-card h3{padding:20px; font-size:1.8rem; text-align:center; color:var(--primary-color);}
 .service-card p{padding:0 15px 20px 15px; text-align:center; color:#555; font-size:1rem;}
-
-/* Quote Form */
-#quote{background:var(--primary-color); color:#fff; border-radius:10px; max-width:700px; margin:0 auto; padding:40px; box-shadow:0 5px 30px rgba(0,0,0,0.3);}
-#quote input, #quote textarea{width:100%; padding:15px; margin-bottom:20px; border-radius:5px; border:none; font-size:1rem;}
-#quote button{background:var(--accent-color); color:#fff; padding:15px 30px; border:none; font-size:1.2rem; cursor:pointer; transition:all 0.3s;}
-#quote button:hover{background:#45a049; transform:scale(1.05);}
-
-/* Testimonials */
 #testimonials{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px;}
 .testimonial-card{background:#fff; padding:30px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:all 0.5s;}
 .testimonial-card p{font-style:italic; color:#555; margin-bottom:15px;}
 .testimonial-card h4{color:var(--primary-color); text-align:right;}
-
-/* Footer */
 footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-size:1rem;}
-
-/* Animations */
 @keyframes fadeInDown{from{opacity:0; transform:translateY(-50px);} to{opacity:1; transform:translateY(0);}}
 @keyframes fadeInUp{from{opacity:0; transform:translateY(50px);} to{opacity:1; transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
-
-/* Scroll reveal */
 .visible{opacity:1; transform:translateY(0); transition:all 0.8s ease-in-out;}
-
-@media(max-width:768px){
-  header h1{font-size:3rem;}
-  header p{font-size:1.2rem;}
-  nav{flex-direction:column; gap:10px;}
-  #about{flex-direction:column;}
-}
+@media(max-width:768px){header h1{font-size:3rem;} header p{font-size:1.2rem;} nav{flex-direction:column; gap:10px;} #about{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -142,8 +96,9 @@ footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-s
 
 <section id="quote">
   <h2 class="section-title" style="color:#fff;">Get a Free Quote</h2>
-  <form action="https://formspree.io/f/xqadgpbb" method="POST">
+  <form id="quote-form" action="https://formspree.io/f/xqadgpbb" method="POST">
     <input type="hidden" name="_cc" value="boe@easyhanson.net,Brsnt3@gmail.com">
+    <input type="hidden" name="_subject" value="New Junk Removal Quote Request">
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="phone" placeholder="Phone Number" required>
@@ -152,6 +107,8 @@ footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-s
     <textarea name="message" rows="5" placeholder="Additional Details (optional)"></textarea>
     <button type="submit">Submit</button>
   </form>
+  <p id="form-success" style="display:none;color:#4caf50;margin-top:15px;font-weight:bold;">Thank you! Your quote request has been sent.</p>
+  <p id="form-error" style="display:none;color:red;margin-top:15px;font-weight:bold;">Oops! Something went wrong. Please try again.</p>
 </section>
 
 <section id="testimonials">
@@ -176,7 +133,7 @@ footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-s
 </footer>
 
 <script>
-// Scroll reveal for sections
+// Scroll reveal
 const sections = document.querySelectorAll('section');
 const revealOnScroll = () => {
   const scrollY = window.pageYOffset;
@@ -189,7 +146,13 @@ const revealOnScroll = () => {
 };
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
-</script>
 
-</body>
-</html>
+// Form AJAX submission
+const form = document.getElementById('quote-form');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const formData = new FormData(form);
+  fetch(form.action, { method:'POST', body:formData, headers:{ 'Accept':'application/json'} })
+    .then(response=>{
+      if(response.ok){ form.reset(); document.getElementById('form-success').style.display='block'; document.getElementById('form-error').style.display='none'; }
+      else{ document.getElementById('form-success').style.display='none'; document.getElementById('form-error').style.display='
