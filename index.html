@@ -6,62 +6,99 @@
 <title>Borderlands Junk Removal</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --primary:#1e2a38;
-    --secondary:#5f6c7b;
-    --accent:#2ecc71;
-    --accent-dark:#27ae60;
-    --bg:#f5f7fa;
-    --white:#ffffff;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Poppins',sans-serif;color:var(--primary);background:var(--bg);line-height:1.6;}
-  
-  /* HEADER */
-  header{
-    background:url('https://images.unsplash.com/photo-1606621463149-b0d5f2fbf96f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; color:white;
-  }
-  header::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(30,42,56,0.7);}
-  header h1, header p{position:relative; z-index:2; text-align:center;}
-  header h1{font-size:4rem; font-weight:700; margin-bottom:1rem;}
-  header p{font-size:1.5rem; font-weight:300;}
+:root{
+  --primary:#1e2a38;
+  --secondary:#5f6c7b;
+  --accent:#2ecc71;
+  --accent-dark:#27ae60;
+  --bg:#f5f7fa;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--primary);background:var(--bg);line-height:1.6;}
 
-  /* SECTION STYLES */
-  section{padding:5rem 2rem;}
-  .container{max-width:1100px; margin:0 auto;}
-  h2{color:var(--accent-dark); font-size:2.5rem; margin-bottom:1.5rem; text-align:center;}
-  p{color:var(--secondary); font-size:1.1rem; margin-bottom:1.5rem; text-align:center;}
+/* HEADER */
+header{
+  background:url('https://images.unsplash.com/photo-1606621463149-b0d5f2fbf96f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; color:white;
+}
+header::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(30,42,56,0.7);}
+header h1, header p{position:relative; z-index:2; text-align:center;}
+header h1{font-size:4rem; font-weight:700; margin-bottom:1rem;}
+header p{font-size:1.5rem; font-weight:300;}
 
-  /* ABOUT US */
-  .about-content{display:flex; flex-direction:column; align-items:center; gap:1.5rem;}
-  .about-content img{border-radius:15px; max-width:250px;}
-  .about-content div{max-width:700px;}
+/* SECTION STYLES */
+section{padding:5rem 2rem;}
+.container{max-width:1100px; margin:0 auto;}
+h2{color:var(--accent-dark); font-size:2.5rem; margin-bottom:1.5rem; text-align:center;}
+p{color:var(--secondary); font-size:1.1rem; margin-bottom:1.5rem; text-align:center;}
 
-  /* SERVICES */
-  .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem;}
-  .service-card{background:var(--white); padding:2rem; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.3s; cursor:pointer;}
-  .service-card:hover{transform:translateY(-10px);}
-  .service-card h3{color:var(--primary); margin-bottom:0.5rem;}
-  .service-card p{color:var(--secondary);}
-  .service-card .price{font-weight:600; margin-top:1rem; color:var(--accent-dark); font-size:1.2rem;}
+/* ABOUT US */
+.about-content{display:flex; flex-direction:column; align-items:center; gap:1.5rem;}
+.about-content img{border-radius:15px; max-width:250px;}
+.about-content div{max-width:700px;}
 
-  /* HOW IT WORKS */
-  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; text-align:center;}
-  .step{background:var(--white); padding:2rem; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-  .step h4{margin-bottom:1rem; color:var(--accent-dark);}
-  .step p{color:var(--secondary); font-size:1rem;}
+/* SERVICES */
+.services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem;}
+.service-card{background:var(--white); padding:2rem; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.3s; cursor:pointer;}
+.service-card:hover{transform:translateY(-10px);}
+.service-card h3{color:var(--primary); margin-bottom:0.5rem;}
+.service-card p{color:var(--secondary);}
+.service-card .price{font-weight:600; margin-top:1rem; color:var(--accent-dark); font-size:1.2rem;}
 
-  /* TESTIMONIALS */
-  .testimonials{display:flex; flex-direction:column; gap:2rem;}
-  .testimonial{background:var(--white); padding:2rem; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-  .testimonial p{font-style:italic;}
-  .testimonial h5{margin-top:1rem; text-align:right; color:var(--accent-dark);}
+/* BUTTON */
+.quote-btn{display:inline-block;margin-top:2rem;background:var(--accent);color:white;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;transition:0.3s;}
+.quote-btn:hover{background:var(--accent-dark);}
 
-  /* GALLERY */
-  .gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;}
-  .gallery img{width:100%; border-radius:10px; object-fit:cover;}
+/* FOOTER */
+footer{text-align:center;padding:2rem;color:var(--secondary);}
+</style>
+</head>
+<body>
 
-  /* CONTACT */
-  .contact-form{background:v
+<header>
+  <h1>Borderlands Junk Removal</h1>
+  <p>Fast, Reliable Junk Removal That Gets the Job Done Right</p>
+</header>
+
+<section id="about">
+  <div class="container about-content">
+    <img src="https://images.unsplash.com/photo-1606755962771-f0bcd53a69d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Image">
+    <div>
+      <h2>About Us</h2>
+      <p>My name is <strong>Brant Borden</strong>, the owner and founder. Along with <strong>Boe Hanson</strong>, our COO, we provide professional and affordable junk removal services. We help homes, offices, and construction sites declutter efficiently.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Basic Pickup</h3>
+        <p>Quick removal for furniture, appliances, or small loads.</p>
+        <div class="price">$50 - $200</div>
+      </div>
+      <div class="service-card">
+        <h3>Medium Jobs</h3>
+        <p>Garage clean-outs, office junk, or multiple rooms worth of items.</p>
+        <div class="price">$200 - $750</div>
+      </div>
+      <div class="service-card">
+        <h3>Large Jobs</h3>
+        <p>Estate clean-outs or heavy debris removal from construction sites.</p>
+        <div class="price">$750+</div>
+      </div>
+    </div>
+    <a href="quote.html" class="quote-btn">Get a Free Quote</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Borderlands Junk Removal · Phone: (903) 875-6412 · Email: Boe@easyhanson.net
+</footer>
+
+</body>
+</html>
