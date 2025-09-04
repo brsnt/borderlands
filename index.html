@@ -30,7 +30,7 @@ nav a:hover{color:var(--accent-color);}
 
 /* Hero */
 header{
-  height:100vh; background:url('https://source.unsplash.com/1600x900/?junk-truck,removal') center/cover no-repeat;
+  height:100vh; background:url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
   display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--text-color); text-align:center; position:relative; overflow:hidden;
 }
 header::after{
@@ -52,11 +52,12 @@ section{padding:100px 50px; opacity:0; transform:translateY(50px); transition:al
 #about p{font-size:1.1rem; line-height:1.7; color:#333;}
 
 /* Services */
-#services{display:flex; justify-content:center;}
-.service-card{background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.5s, box-shadow 0.5s; cursor:pointer; max-width:400px; margin:auto;}
+#services{display:flex; flex-wrap:wrap; justify-content:center; gap:30px;}
+.service-card{background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.5s, box-shadow 0.5s; cursor:pointer; max-width:400px;}
 .service-card:hover{transform:translateY(-15px); box-shadow:0 15px 40px rgba(0,0,0,0.3);}
 .service-card img{width:100%; height:250px; object-fit:cover;}
 .service-card h3{padding:20px; font-size:1.8rem; text-align:center; color:var(--primary-color);}
+.service-card p{padding:0 15px 20px 15px; text-align:center; color:#555; font-size:1rem;}
 
 /* Quote Form */
 #quote{background:var(--primary-color); color:#fff; border-radius:10px; max-width:700px; margin:0 auto; padding:40px; box-shadow:0 5px 30px rgba(0,0,0,0.3);}
@@ -113,15 +114,30 @@ footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-s
     <h2 class="section-title">About Us</h2>
     <p>Borderlands Junk Removal is owned and operated by <strong>Brant Borden</strong>, our Founder and Owner, and <strong>Boe Hanson</strong>, our Chief Operating Officer. We are both hardworking, reliable, and dedicated to helping our clients clear out their spaces efficiently. Our team is committed to providing friendly, professional service, whether it’s a residential cleanout, commercial project, or emergency junk removal. With Borderlands Junk Removal, you get a team that truly cares, shows up on time, and makes your junk removal process easy and stress-free.</p>
   </div>
-  <img src="https://source.unsplash.com/500x400/?team,work" alt="About Us">
+  <img src="https://images.unsplash.com/photo-1601758123927-6b576f2f40e4?auto=format&fit=crop&w=500&q=80" alt="About Us">
 </section>
 
 <section id="services">
   <h2 class="section-title">Our Services</h2>
-  <div class="service-card" onclick="window.location.href='quote.html?service=Junk+Removal'">
-    <img src="https://source.unsplash.com/400x300/?junk,removal" alt="Junk Removal">
-    <h3>Junk Removal</h3>
+
+  <div class="service-card" onclick="window.location.href='quote.html?service=Basic+Pickup&price=$50+-+$200'">
+    <img src="https://images.unsplash.com/photo-1606788075761-445d5b72dc7e?auto=format&fit=crop&w=800&q=80" alt="Basic Pickup">
+    <h3>Basic Pickup</h3>
+    <p>Quick removal for furniture, appliances, or small loads.<br><strong>$50 - $200</strong></p>
   </div>
+
+  <div class="service-card" onclick="window.location.href='quote.html?service=Medium+Jobs&price=$200+-+$750'">
+    <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=800&q=80" alt="Medium Jobs">
+    <h3>Medium Jobs</h3>
+    <p>Garage clean-outs, office junk, or multiple rooms worth of items.<br><strong>$200 - $750</strong></p>
+  </div>
+
+  <div class="service-card" onclick="window.location.href='quote.html?service=Large+Jobs&price=$750+'">
+    <img src="https://images.unsplash.com/photo-1581092160610-432d2fc38f55?auto=format&fit=crop&w=800&q=80" alt="Large Jobs">
+    <h3>Large Jobs</h3>
+    <p>Estate clean-outs or heavy debris removal from construction sites.<br><strong>$750+</strong></p>
+  </div>
+
 </section>
 
 <section id="quote">
@@ -131,8 +147,9 @@ footer{background:#222; color:#fff; text-align:center; padding:30px 50px; font-s
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="service" id="service" placeholder="Service" value="Junk Removal" required>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <input type="text" name="service" id="service" placeholder="Service" required readonly>
+    <input type="text" name="price" id="price" placeholder="Price" required readonly>
+    <textarea name="message" rows="5" placeholder="Additional Details (optional)"></textarea>
     <button type="submit">Submit</button>
   </form>
 </section>
